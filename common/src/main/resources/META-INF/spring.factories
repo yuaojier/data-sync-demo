@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.choice.extension.autoconfigure.event.EventAutoConfiguration
+autoconfiguration.event.EventAutoConfiguration
