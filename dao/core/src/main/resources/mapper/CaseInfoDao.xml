@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.kedacom.core.dao.com.kedacom.core.dao.CaseInfoDao">
+
+    <resultMap type="entity.CaseInfo" id="CaseInfoMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="caseIdentify" column="case_identify" jdbcType="VARCHAR"/>
+        <result property="caseNo" column="case_no" jdbcType="VARCHAR"/>
+        <result property="origNo" column="orig_no" jdbcType="VARCHAR"/>
+        <result property="caseName" column="case_name" jdbcType="VARCHAR"/>
+        <result property="caseStatus" column="case_status" jdbcType="VARCHAR"/>
+        <result property="caseCategory" column="case_category" jdbcType="VARCHAR"/>
+        <result property="caseSource" column="case_source" jdbcType="VARCHAR"/>
+        <result property="harmLevel" column="harm_level" jdbcType="VARCHAR"/>
+        <result property="beginTime" column="begin_time" jdbcType="TIMESTAMP"/>
+        <result property="endTime" column="end_time" jdbcType="TIMESTAMP"/>
+        <result property="classifyStatus" column="classify_status" jdbcType="VARCHAR"/>
+        <result property="caseTags" column="case_tags" jdbcType="VARCHAR"/>
+        <result property="crimeLocale" column="crime_locale" jdbcType="VARCHAR"/>
+        <result property="longitude" column="longitude" jdbcType="NUMERIC"/>
+        <result property="latitude" column="latitude" jdbcType="NUMERIC"/>
+        <result property="adminRegionCd" column="admin_region_cd" jdbcType="VARCHAR"/>
+        <result property="adminRegionValue" column="admin_region_value" jdbcType="VARCHAR"/>
+        <result property="cantonCode" column="canton_code" jdbcType="VARCHAR"/>
+        <result property="cantonName" column="canton_name" jdbcType="VARCHAR"/>
+        <result property="classification" column="classification" jdbcType="VARCHAR"/>
+        <result property="lossSituation" column="loss_situation" jdbcType="VARCHAR"/>
+        <result property="alarmTime" column="alarm_time" jdbcType="TIMESTAMP"/>
+        <result property="alarmPeople" column="alarm_people" jdbcType="VARCHAR"/>
+        <result property="alarmUnit" column="alarm_unit" jdbcType="VARCHAR"/>
+        <result property="alarmCall" column="alarm_call" jdbcType="VARCHAR"/>
+        <result property="alarmWay" column="alarm_way" jdbcType="VARCHAR"/>
+        <result property="alarmReasons" column="alarm_reasons" jdbcType="VARCHAR"/>
+        <result property="alarmPeopleState" column="alarm_people_state" jdbcType="VARCHAR"/>
+        <result property="reportedPeople" column="reported_people" jdbcType="VARCHAR"/>
+        <result property="reportedUnit" column="reported_unit" jdbcType="VARCHAR"/>
+        <result property="acceptPeople" column="accept_people" jdbcType="VARCHAR"/>
+        <result property="acceptUnit" column="accept_unit" jdbcType="VARCHAR"/>
+        <result property="acceptTime" column="accept_time" jdbcType="TIMESTAMP"/>
+        <result property="caseDescription" column="case_description" jdbcType="VARCHAR"/>
+        <result property="crimeTime" column="crime_time" jdbcType="VARCHAR"/>
+        <result property="siteSelection" column="site_selection" jdbcType="VARCHAR"/>
+        <result property="injuryPart" column="injury_part" jdbcType="VARCHAR"/>
+        <result property="perpetratorCount" column="perpetrator_count" jdbcType="VARCHAR"/>
+        <result property="targetSelection" column="target_selection" jdbcType="VARCHAR"/>
+        <result property="crimeFeature" column="crime_feature" jdbcType="VARCHAR"/>
+        <result property="uploadTime" column="upload_time" jdbcType="TIMESTAMP"/>
+        <result property="uploadUser" column="upload_user" jdbcType="VARCHAR"/>
+        <result property="uploadRole" column="upload_role" jdbcType="VARCHAR"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="updateUser" column="update_user" jdbcType="VARCHAR"/>
+        <result property="updateRole" column="update_role" jdbcType="VARCHAR"/>
+        <result property="crimeSceneInvestigateNo" column="crime_scene_investigate_no" jdbcType="VARCHAR"/>
+        <result property="caseAttributes" column="case_attributes" jdbcType="VARCHAR"/>
+        <result property="caseNature" column="case_nature" jdbcType="VARCHAR"/>
+        <result property="recordCaseTime" column="record_case_time" jdbcType="TIMESTAMP"/>
+        <result property="solveCaseTime" column="solve_case_time" jdbcType="TIMESTAMP"/>
+        <result property="solveUnit" column="solve_unit" jdbcType="VARCHAR"/>
+        <result property="solveUnitName" column="solve_unit_name" jdbcType="VARCHAR"/>
+        <result property="createUser" column="create_user" jdbcType="VARCHAR"/>
+        <result property="createDepart" column="create_depart" jdbcType="VARCHAR"/>
+        <result property="statusCd" column="status_cd" jdbcType="VARCHAR"/>
+        <result property="visibleDepts" column="visible_depts" jdbcType="VARCHAR"/>
+        <result property="isSerial" column="is_serial" jdbcType="OTHER"/>
+        <result property="isScene" column="is_scene" jdbcType="OTHER"/>
+        <result property="isInvestigation" column="is_investigation" jdbcType="OTHER"/>
+        <result property="isSycn" column="is_sycn" jdbcType="OTHER"/>
+        <result property="createdBy" column="created_by" jdbcType="VARCHAR"/>
+        <result property="updatedBy" column="updated_by" jdbcType="VARCHAR"/>
+        <result property="createdTime" column="created_time" jdbcType="TIMESTAMP"/>
+        <result property="updatedTime" column="updated_time" jdbcType="TIMESTAMP"/>
+        <result property="version" column="version" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CaseInfoMap">
+        select
+          id, case_identify, case_no, orig_no, case_name, case_status, case_category, case_source, harm_level, begin_time, end_time, classify_status, case_tags, crime_locale, longitude, latitude, admin_region_cd, admin_region_value, canton_code, canton_name, classification, loss_situation, alarm_time, alarm_people, alarm_unit, alarm_call, alarm_way, alarm_reasons, alarm_people_state, reported_people, reported_unit, accept_people, accept_unit, accept_time, case_description, crime_time, site_selection, injury_part, perpetrator_count, target_selection, crime_feature, upload_time, upload_user, upload_role, update_time, update_user, update_role, crime_scene_investigate_no, case_attributes, case_nature, record_case_time, solve_case_time, solve_unit, solve_unit_name, create_user, create_depart, status_cd, visible_depts, is_serial, is_scene, is_investigation, is_sycn, created_by, updated_by, created_time, updated_time, version
+        from ezview.case_info
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CaseInfoMap">
+        select
+          id, case_identify, case_no, orig_no, case_name, case_status, case_category, case_source, harm_level, begin_time, end_time, classify_status, case_tags, crime_locale, longitude, latitude, admin_region_cd, admin_region_value, canton_code, canton_name, classification, loss_situation, alarm_time, alarm_people, alarm_unit, alarm_call, alarm_way, alarm_reasons, alarm_people_state, reported_people, reported_unit, accept_people, accept_unit, accept_time, case_description, crime_time, site_selection, injury_part, perpetrator_count, target_selection, crime_feature, upload_time, upload_user, upload_role, update_time, update_user, update_role, crime_scene_investigate_no, case_attributes, case_nature, record_case_time, solve_case_time, solve_unit, solve_unit_name, create_user, create_depart, status_cd, visible_depts, is_serial, is_scene, is_investigation, is_sycn, created_by, updated_by, created_time, updated_time, version
+        from ezview.case_info
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CaseInfoMap">
+        select
+          id, case_identify, case_no, orig_no, case_name, case_status, case_category, case_source, harm_level, begin_time, end_time, classify_status, case_tags, crime_locale, longitude, latitude, admin_region_cd, admin_region_value, canton_code, canton_name, classification, loss_situation, alarm_time, alarm_people, alarm_unit, alarm_call, alarm_way, alarm_reasons, alarm_people_state, reported_people, reported_unit, accept_people, accept_unit, accept_time, case_description, crime_time, site_selection, injury_part, perpetrator_count, target_selection, crime_feature, upload_time, upload_user, upload_role, update_time, update_user, update_role, crime_scene_investigate_no, case_attributes, case_nature, record_case_time, solve_case_time, solve_unit, solve_unit_name, create_user, create_depart, status_cd, visible_depts, is_serial, is_scene, is_investigation, is_sycn, created_by, updated_by, created_time, updated_time, version
+        from ezview.case_info
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="caseIdentify != null and caseIdentify != ''">
+                and case_identify = #{caseIdentify}
+            </if>
+            <if test="caseNo != null and caseNo != ''">
+                and case_no = #{caseNo}
+            </if>
+            <if test="origNo != null and origNo != ''">
+                and orig_no = #{origNo}
+            </if>
+            <if test="caseName != null and caseName != ''">
+                and case_name = #{caseName}
+            </if>
+            <if test="caseStatus != null and caseStatus != ''">
+                and case_status = #{caseStatus}
+            </if>
+            <if test="caseCategory != null and caseCategory != ''">
+                and case_category = #{caseCategory}
+            </if>
+            <if test="caseSource != null and caseSource != ''">
+                and case_source = #{caseSource}
+            </if>
+            <if test="harmLevel != null and harmLevel != ''">
+                and harm_level = #{harmLevel}
+            </if>
+            <if test="beginTime != null">
+                and begin_time = #{beginTime}
+            </if>
+            <if test="endTime != null">
+                and end_time = #{endTime}
+            </if>
+            <if test="classifyStatus != null and classifyStatus != ''">
+                and classify_status = #{classifyStatus}
+            </if>
+            <if test="caseTags != null and caseTags != ''">
+                and case_tags = #{caseTags}
+            </if>
+            <if test="crimeLocale != null and crimeLocale != ''">
+                and crime_locale = #{crimeLocale}
+            </if>
+            <if test="longitude != null">
+                and longitude = #{longitude}
+            </if>
+            <if test="latitude != null">
+                and latitude = #{latitude}
+            </if>
+            <if test="adminRegionCd != null and adminRegionCd != ''">
+                and admin_region_cd = #{adminRegionCd}
+            </if>
+            <if test="adminRegionValue != null and adminRegionValue != ''">
+                and admin_region_value = #{adminRegionValue}
+            </if>
+            <if test="cantonCode != null and cantonCode != ''">
+                and canton_code = #{cantonCode}
+            </if>
+            <if test="cantonName != null and cantonName != ''">
+                and canton_name = #{cantonName}
+            </if>
+            <if test="classification != null and classification != ''">
+                and classification = #{classification}
+            </if>
+            <if test="lossSituation != null and lossSituation != ''">
+                and loss_situation = #{lossSituation}
+            </if>
+            <if test="alarmTime != null">
+                and alarm_time = #{alarmTime}
+            </if>
+            <if test="alarmPeople != null and alarmPeople != ''">
+                and alarm_people = #{alarmPeople}
+            </if>
+            <if test="alarmUnit != null and alarmUnit != ''">
+                and alarm_unit = #{alarmUnit}
+            </if>
+            <if test="alarmCall != null and alarmCall != ''">
+                and alarm_call = #{alarmCall}
+            </if>
+            <if test="alarmWay != null and alarmWay != ''">
+                and alarm_way = #{alarmWay}
+            </if>
+            <if test="alarmReasons != null and alarmReasons != ''">
+                and alarm_reasons = #{alarmReasons}
+            </if>
+            <if test="alarmPeopleState != null and alarmPeopleState != ''">
+                and alarm_people_state = #{alarmPeopleState}
+            </if>
+            <if test="reportedPeople != null and reportedPeople != ''">
+                and reported_people = #{reportedPeople}
+            </if>
+            <if test="reportedUnit != null and reportedUnit != ''">
+                and reported_unit = #{reportedUnit}
+            </if>
+            <if test="acceptPeople != null and acceptPeople != ''">
+                and accept_people = #{acceptPeople}
+            </if>
+            <if test="acceptUnit != null and acceptUnit != ''">
+                and accept_unit = #{acceptUnit}
+            </if>
+            <if test="acceptTime != null">
+                and accept_time = #{acceptTime}
+            </if>
+            <if test="caseDescription != null and caseDescription != ''">
+                and case_description = #{caseDescription}
+            </if>
+            <if test="crimeTime != null and crimeTime != ''">
+                and crime_time = #{crimeTime}
+            </if>
+            <if test="siteSelection != null and siteSelection != ''">
+                and site_selection = #{siteSelection}
+            </if>
+            <if test="injuryPart != null and injuryPart != ''">
+                and injury_part = #{injuryPart}
+            </if>
+            <if test="perpetratorCount != null and perpetratorCount != ''">
+                and perpetrator_count = #{perpetratorCount}
+            </if>
+            <if test="targetSelection != null and targetSelection != ''">
+                and target_selection = #{targetSelection}
+            </if>
+            <if test="crimeFeature != null and crimeFeature != ''">
+                and crime_feature = #{crimeFeature}
+            </if>
+            <if test="uploadTime != null">
+                and upload_time = #{uploadTime}
+            </if>
+            <if test="uploadUser != null and uploadUser != ''">
+                and upload_user = #{uploadUser}
+            </if>
+            <if test="uploadRole != null and uploadRole != ''">
+                and upload_role = #{uploadRole}
+            </if>
+            <if test="updateTime != null">
+                and update_time = #{updateTime}
+            </if>
+            <if test="updateUser != null and updateUser != ''">
+                and update_user = #{updateUser}
+            </if>
+            <if test="updateRole != null and updateRole != ''">
+                and update_role = #{updateRole}
+            </if>
+            <if test="crimeSceneInvestigateNo != null and crimeSceneInvestigateNo != ''">
+                and crime_scene_investigate_no = #{crimeSceneInvestigateNo}
+            </if>
+            <if test="caseAttributes != null and caseAttributes != ''">
+                and case_attributes = #{caseAttributes}
+            </if>
+            <if test="caseNature != null and caseNature != ''">
+                and case_nature = #{caseNature}
+            </if>
+            <if test="recordCaseTime != null">
+                and record_case_time = #{recordCaseTime}
+            </if>
+            <if test="solveCaseTime != null">
+                and solve_case_time = #{solveCaseTime}
+            </if>
+            <if test="solveUnit != null and solveUnit != ''">
+                and solve_unit = #{solveUnit}
+            </if>
+            <if test="solveUnitName != null and solveUnitName != ''">
+                and solve_unit_name = #{solveUnitName}
+            </if>
+            <if test="createUser != null and createUser != ''">
+                and create_user = #{createUser}
+            </if>
+            <if test="createDepart != null and createDepart != ''">
+                and create_depart = #{createDepart}
+            </if>
+            <if test="statusCd != null and statusCd != ''">
+                and status_cd = #{statusCd}
+            </if>
+            <if test="visibleDepts != null and visibleDepts != ''">
+                and visible_depts = #{visibleDepts}
+            </if>
+            <if test="isSerial != null">
+                and is_serial = #{isSerial}
+            </if>
+            <if test="isScene != null">
+                and is_scene = #{isScene}
+            </if>
+            <if test="isInvestigation != null">
+                and is_investigation = #{isInvestigation}
+            </if>
+            <if test="isSycn != null">
+                and is_sycn = #{isSycn}
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                and created_by = #{createdBy}
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                and updated_by = #{updatedBy}
+            </if>
+            <if test="createdTime != null">
+                and created_time = #{createdTime}
+            </if>
+            <if test="updatedTime != null">
+                and updated_time = #{updatedTime}
+            </if>
+            <if test="version != null">
+                and version = #{version}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ezview.case_info(case_identify, case_no, orig_no, case_name, case_status, case_category, case_source, harm_level, begin_time, end_time, classify_status, case_tags, crime_locale, longitude, latitude, admin_region_cd, admin_region_value, canton_code, canton_name, classification, loss_situation, alarm_time, alarm_people, alarm_unit, alarm_call, alarm_way, alarm_reasons, alarm_people_state, reported_people, reported_unit, accept_people, accept_unit, accept_time, case_description, crime_time, site_selection, injury_part, perpetrator_count, target_selection, crime_feature, upload_time, upload_user, upload_role, update_time, update_user, update_role, crime_scene_investigate_no, case_attributes, case_nature, record_case_time, solve_case_time, solve_unit, solve_unit_name, create_user, create_depart, status_cd, visible_depts, is_serial, is_scene, is_investigation, is_sycn, created_by, updated_by, created_time, updated_time, version)
+        values (#{caseIdentify}, #{caseNo}, #{origNo}, #{caseName}, #{caseStatus}, #{caseCategory}, #{caseSource}, #{harmLevel}, #{beginTime}, #{endTime}, #{classifyStatus}, #{caseTags}, #{crimeLocale}, #{longitude}, #{latitude}, #{adminRegionCd}, #{adminRegionValue}, #{cantonCode}, #{cantonName}, #{classification}, #{lossSituation}, #{alarmTime}, #{alarmPeople}, #{alarmUnit}, #{alarmCall}, #{alarmWay}, #{alarmReasons}, #{alarmPeopleState}, #{reportedPeople}, #{reportedUnit}, #{acceptPeople}, #{acceptUnit}, #{acceptTime}, #{caseDescription}, #{crimeTime}, #{siteSelection}, #{injuryPart}, #{perpetratorCount}, #{targetSelection}, #{crimeFeature}, #{uploadTime}, #{uploadUser}, #{uploadRole}, #{updateTime}, #{updateUser}, #{updateRole}, #{crimeSceneInvestigateNo}, #{caseAttributes}, #{caseNature}, #{recordCaseTime}, #{solveCaseTime}, #{solveUnit}, #{solveUnitName}, #{createUser}, #{createDepart}, #{statusCd}, #{visibleDepts}, #{isSerial}, #{isScene}, #{isInvestigation}, #{isSycn}, #{createdBy}, #{updatedBy}, #{createdTime}, #{updatedTime}, #{version})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ezview.case_info
+        <set>
+            <if test="caseIdentify != null and caseIdentify != ''">
+                case_identify = #{caseIdentify},
+            </if>
+            <if test="caseNo != null and caseNo != ''">
+                case_no = #{caseNo},
+            </if>
+            <if test="origNo != null and origNo != ''">
+                orig_no = #{origNo},
+            </if>
+            <if test="caseName != null and caseName != ''">
+                case_name = #{caseName},
+            </if>
+            <if test="caseStatus != null and caseStatus != ''">
+                case_status = #{caseStatus},
+            </if>
+            <if test="caseCategory != null and caseCategory != ''">
+                case_category = #{caseCategory},
+            </if>
+            <if test="caseSource != null and caseSource != ''">
+                case_source = #{caseSource},
+            </if>
+            <if test="harmLevel != null and harmLevel != ''">
+                harm_level = #{harmLevel},
+            </if>
+            <if test="beginTime != null">
+                begin_time = #{beginTime},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime},
+            </if>
+            <if test="classifyStatus != null and classifyStatus != ''">
+                classify_status = #{classifyStatus},
+            </if>
+            <if test="caseTags != null and caseTags != ''">
+                case_tags = #{caseTags},
+            </if>
+            <if test="crimeLocale != null and crimeLocale != ''">
+                crime_locale = #{crimeLocale},
+            </if>
+            <if test="longitude != null">
+                longitude = #{longitude},
+            </if>
+            <if test="latitude != null">
+                latitude = #{latitude},
+            </if>
+            <if test="adminRegionCd != null and adminRegionCd != ''">
+                admin_region_cd = #{adminRegionCd},
+            </if>
+            <if test="adminRegionValue != null and adminRegionValue != ''">
+                admin_region_value = #{adminRegionValue},
+            </if>
+            <if test="cantonCode != null and cantonCode != ''">
+                canton_code = #{cantonCode},
+            </if>
+            <if test="cantonName != null and cantonName != ''">
+                canton_name = #{cantonName},
+            </if>
+            <if test="classification != null and classification != ''">
+                classification = #{classification},
+            </if>
+            <if test="lossSituation != null and lossSituation != ''">
+                loss_situation = #{lossSituation},
+            </if>
+            <if test="alarmTime != null">
+                alarm_time = #{alarmTime},
+            </if>
+            <if test="alarmPeople != null and alarmPeople != ''">
+                alarm_people = #{alarmPeople},
+            </if>
+            <if test="alarmUnit != null and alarmUnit != ''">
+                alarm_unit = #{alarmUnit},
+            </if>
+            <if test="alarmCall != null and alarmCall != ''">
+                alarm_call = #{alarmCall},
+            </if>
+            <if test="alarmWay != null and alarmWay != ''">
+                alarm_way = #{alarmWay},
+            </if>
+            <if test="alarmReasons != null and alarmReasons != ''">
+                alarm_reasons = #{alarmReasons},
+            </if>
+            <if test="alarmPeopleState != null and alarmPeopleState != ''">
+                alarm_people_state = #{alarmPeopleState},
+            </if>
+            <if test="reportedPeople != null and reportedPeople != ''">
+                reported_people = #{reportedPeople},
+            </if>
+            <if test="reportedUnit != null and reportedUnit != ''">
+                reported_unit = #{reportedUnit},
+            </if>
+            <if test="acceptPeople != null and acceptPeople != ''">
+                accept_people = #{acceptPeople},
+            </if>
+            <if test="acceptUnit != null and acceptUnit != ''">
+                accept_unit = #{acceptUnit},
+            </if>
+            <if test="acceptTime != null">
+                accept_time = #{acceptTime},
+            </if>
+            <if test="caseDescription != null and caseDescription != ''">
+                case_description = #{caseDescription},
+            </if>
+            <if test="crimeTime != null and crimeTime != ''">
+                crime_time = #{crimeTime},
+            </if>
+            <if test="siteSelection != null and siteSelection != ''">
+                site_selection = #{siteSelection},
+            </if>
+            <if test="injuryPart != null and injuryPart != ''">
+                injury_part = #{injuryPart},
+            </if>
+            <if test="perpetratorCount != null and perpetratorCount != ''">
+                perpetrator_count = #{perpetratorCount},
+            </if>
+            <if test="targetSelection != null and targetSelection != ''">
+                target_selection = #{targetSelection},
+            </if>
+            <if test="crimeFeature != null and crimeFeature != ''">
+                crime_feature = #{crimeFeature},
+            </if>
+            <if test="uploadTime != null">
+                upload_time = #{uploadTime},
+            </if>
+            <if test="uploadUser != null and uploadUser != ''">
+                upload_user = #{uploadUser},
+            </if>
+            <if test="uploadRole != null and uploadRole != ''">
+                upload_role = #{uploadRole},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="updateUser != null and updateUser != ''">
+                update_user = #{updateUser},
+            </if>
+            <if test="updateRole != null and updateRole != ''">
+                update_role = #{updateRole},
+            </if>
+            <if test="crimeSceneInvestigateNo != null and crimeSceneInvestigateNo != ''">
+                crime_scene_investigate_no = #{crimeSceneInvestigateNo},
+            </if>
+            <if test="caseAttributes != null and caseAttributes != ''">
+                case_attributes = #{caseAttributes},
+            </if>
+            <if test="caseNature != null and caseNature != ''">
+                case_nature = #{caseNature},
+            </if>
+            <if test="recordCaseTime != null">
+                record_case_time = #{recordCaseTime},
+            </if>
+            <if test="solveCaseTime != null">
+                solve_case_time = #{solveCaseTime},
+            </if>
+            <if test="solveUnit != null and solveUnit != ''">
+                solve_unit = #{solveUnit},
+            </if>
+            <if test="solveUnitName != null and solveUnitName != ''">
+                solve_unit_name = #{solveUnitName},
+            </if>
+            <if test="createUser != null and createUser != ''">
+                create_user = #{createUser},
+            </if>
+            <if test="createDepart != null and createDepart != ''">
+                create_depart = #{createDepart},
+            </if>
+            <if test="statusCd != null and statusCd != ''">
+                status_cd = #{statusCd},
+            </if>
+            <if test="visibleDepts != null and visibleDepts != ''">
+                visible_depts = #{visibleDepts},
+            </if>
+            <if test="isSerial != null">
+                is_serial = #{isSerial},
+            </if>
+            <if test="isScene != null">
+                is_scene = #{isScene},
+            </if>
+            <if test="isInvestigation != null">
+                is_investigation = #{isInvestigation},
+            </if>
+            <if test="isSycn != null">
+                is_sycn = #{isSycn},
+            </if>
+            <if test="createdBy != null and createdBy != ''">
+                created_by = #{createdBy},
+            </if>
+            <if test="updatedBy != null and updatedBy != ''">
+                updated_by = #{updatedBy},
+            </if>
+            <if test="createdTime != null">
+                created_time = #{createdTime},
+            </if>
+            <if test="updatedTime != null">
+                updated_time = #{updatedTime},
+            </if>
+            <if test="version != null">
+                version = #{version},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ezview.case_info where id = #{id}
+    </delete>
+
+</mapper>

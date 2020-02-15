@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: @spring.application.name@
+  datasource:
+    url: "jdbc:mysql://10.65.3.26:3306/ezview"
+    username: "ezview"
+    password: "47861517E77a#af413"
+  swagger2:
+    base-package:
+    - com.kedacom.synccore.api
+    title: @project.artifactId@-docs
+    docket:
+      spring-boot-api:
+        base-package: org.springframework.boot
+

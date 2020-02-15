@@ -1,2 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-autoconfiguration.event.EventAutoConfiguration
+autoconfiguration.event.EventAutoConfiguration,\
+autoconfiguration.swagger.Swagger2Configuration,\
+autoconfiguration.delay.DelayAutoConfiguration
