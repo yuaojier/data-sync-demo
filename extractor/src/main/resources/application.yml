@@ -1,0 +1,18 @@
+spring:
+  swagger2:
+    base-package:
+      - com.kedacom
+    title: @project.artifactId@-docs
+    docket:
+      spring-boot-api:
+        base-package: org.springframework.boot
+server:
+  port: 8060
+sync:
+  url: localhost:8080
+  webServiceUrl: http://ip:�˿�/xtba/services/xtbaWebService
+  userCode: xtbamas001
+  passWord: 61ee8dcbcb02980274ee2e1a61ec4a65
+  batchCorn:
+  todayCorn: 0/ 0/5 * * * ?
+  historicalData: 0 0/10 * * * ?
