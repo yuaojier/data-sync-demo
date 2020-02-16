@@ -8,9 +8,6 @@ import java.util.List;
 
 /**
  * 案件信息(CaseInfo)表服务接口
- *
- * @author makejava
- * @since 2020-02-15 15:09:37
  */
 public interface CaseInfoService {
 
@@ -55,4 +52,5 @@ public interface CaseInfoService {
      */
     boolean deleteById(Long id);
 
+    void updateOrInsert(List<CaseInfo> caseInfoList);
 }

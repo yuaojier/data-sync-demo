@@ -1,2 +1,2 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-  com.kedacom.core.DaoAutoConfiguration
+#org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+#com.kedacom.core.coreAutoConfiguration

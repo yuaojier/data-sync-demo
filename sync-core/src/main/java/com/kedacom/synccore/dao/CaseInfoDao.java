@@ -1,9 +1,10 @@
-package com.kedacom.core.dao;
+package com.kedacom.synccore.dao;
 
 import entity.CaseInfo;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -67,4 +68,10 @@ public interface CaseInfoDao {
      * @param caseInfoList
      */
     void updateOrInsert(List<CaseInfo> caseInfoList);
+
+    /**
+     * 查询最后记录
+     * @return
+     */
+    Date queryUpdateTime();
 }

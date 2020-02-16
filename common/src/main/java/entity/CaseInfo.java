@@ -5,9 +5,6 @@ import java.util.Date;
 
 /**
  * 案件信息(CaseInfo)实体类
- *
- * @author makejava
- * @since 2020-02-15 15:09:37
  */
 public class CaseInfo implements Serializable {
     private static final long serialVersionUID = -85509933416134572L;
@@ -244,17 +241,17 @@ public class CaseInfo implements Serializable {
     /**
     * 是否已串并（1-已串并，0-未串并）
     */
-    private Object isSerial;
+    private int isSerial;
     /**
     * 是否有现场
     */
-    private Object isScene;
+    private int isScene;
     /**
     * 是否勘察现场
     */
-    private Object isInvestigation;
+    private int isInvestigation;
     
-    private Object isSycn;
+    private int isSycn;
     /**
     * 创建者
     */
@@ -741,35 +738,35 @@ public class CaseInfo implements Serializable {
         this.visibleDepts = visibleDepts;
     }
 
-    public Object getIsSerial() {
+    public int getIsSerial() {
         return isSerial;
     }
 
-    public void setIsSerial(Object isSerial) {
+    public void setIsSerial(int isSerial) {
         this.isSerial = isSerial;
     }
 
-    public Object getIsScene() {
+    public int getIsScene() {
         return isScene;
     }
 
-    public void setIsScene(Object isScene) {
+    public void setIsScene(int isScene) {
         this.isScene = isScene;
     }
 
-    public Object getIsInvestigation() {
+    public int getIsInvestigation() {
         return isInvestigation;
     }
 
-    public void setIsInvestigation(Object isInvestigation) {
+    public void setIsInvestigation(int isInvestigation) {
         this.isInvestigation = isInvestigation;
     }
 
-    public Object getIsSycn() {
+    public int getIsSycn() {
         return isSycn;
     }
 
-    public void setIsSycn(Object isSycn) {
+    public void setIsSycn(int isSycn) {
         this.isSycn = isSycn;
     }
 

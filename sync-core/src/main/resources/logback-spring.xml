@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <contextName>logback</contextName>
+    <springProperty scope="context" name="APP_NAME" source="o2o.system.module-name" defaultValue="app"/>
+    <property name="LOG_PATH" value="/choice/logs/${APP_NAME}"/>
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } [%t] [%-40.40logger{39}] %m%n"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"service_name":"${APP_NAME}"}</customFields>
+            <jsonFactoryDecorator class="com.choice.o2o.qrdish.commons.log.MyJsonFactoryDecorator"/>
+        </encoder>
+    </appender>
+    <!--FILE-->
+    <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-info.%i.log</FileNamePattern>
+            <MaxHistory>15</MaxHistory>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-debug.%i.log</FileNamePattern>
+            <MaxHistory>15</MaxHistory>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <appender name="FILE-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-warn.%i.log</FileNamePattern>
+            <MaxHistory>15</MaxHistory>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+    <!--FILE ERROR-->
+    <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-error.%i.log</FileNamePattern>
+            <MaxHistory>15</MaxHistory>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+    <logger name="druid.sql.Statement" level="DEBUG"/>
+    <logger name="com.choice" level="INFO"/>
+
+    <appender name="ASYNC-INFO" class="com.choice.extension.commons.log.AsyncAppender">
+        <appender-ref ref="FILE-INFO"/>
+    </appender>
+    <appender name="ASYNC-ERROR" class="com.choice.extension.commons.log.AsyncAppender">
+        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="FILE-ERROR"/>
+    </appender>
+    <appender name="ASYNC-WARN" class="com.choice.extension.commons.log.AsyncAppender">
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="FILE-WARN"/>
+    </appender>
+    <appender name="ASYNC-DEBUG" class="com.choice.extension.commons.log.AsyncAppender">
+        <appender-ref ref="FILE-DEBUG"/>
+    </appender>
+    <appender name="ASYNC-STDOUT" class="com.choice.extension.commons.log.AsyncAppender">
+        <appender-ref ref="STDOUT"/>
+    </appender>
+    <root level="ERROR">
+        <appender-ref ref="ASYNC-STDOUT"/>
+        <appender-ref ref="ASYNC-INFO"/>
+        <appender-ref ref="ASYNC-ERROR"/>
+        <appender-ref ref="ASYNC-WARN"/>
+        <appender-ref ref="ASYNC-DEBUG"/>
+    </root>
+</configuration>

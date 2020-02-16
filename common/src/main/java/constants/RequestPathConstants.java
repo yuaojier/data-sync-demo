@@ -1,4 +1,4 @@
-package com.kedacom.synccore.constants;
+package constants;
 
 @SuppressWarnings("unused")
 public class RequestPathConstants {
@@ -12,4 +12,8 @@ public class RequestPathConstants {
      * 案件信息
      */
     public static final String CASE_INFORMATION = "/case/information";
+    /**
+     *最早记录时间
+     */
+    public static final String EarliestTime = "/earliestTime";
 }

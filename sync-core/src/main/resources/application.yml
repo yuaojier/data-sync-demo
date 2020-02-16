@@ -2,9 +2,22 @@ spring:
   application:
     name: @spring.application.name@
   datasource:
-    url: "jdbc:mysql://10.65.3.26:3306/ezview"
+    url: "jdbc:mysql://10.65.3.26:3306/ezview?useSSL=true"
     username: "ezview"
     password: "47861517E77a#af413"
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      stat-view-servlet:
+        enabled: true
+        login-password: kedacom
+        login-username: kedacom
+        reset-enable: true
+      initial-size: 1
+      min-idle: 10
+      time-between-eviction-runs-millis: 3000
+      validation-query: select 1
+      max-active: 100
+      min-evictable-idle-time-millis: 1000000
   swagger2:
     base-package:
     - com.kedacom.synccore.api
@@ -12,4 +25,11 @@ spring:
     docket:
       spring-boot-api:
         base-package: org.springframework.boot
-
+kedacom:
+  sync: "SYNC"
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: entity
+logging:
+  level:
+    main.blog.mapper: trace

@@ -3,6 +3,7 @@ package com.kedacom.core;
 import com.kedacom.core.api.CaseInfoService;
 import com.kedacom.core.dao.CaseInfoDao;
 import entity.CaseInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -10,13 +11,10 @@ import java.util.List;
 
 /**
  * 案件信息(CaseInfo)表服务实现类
- *
- * @author makejava
- * @since 2020-02-15 15:09:40
  */
 @Service
 public class CaseInfoServiceImpl implements CaseInfoService {
-    @Resource
+    @Autowired
     private CaseInfoDao caseInfoDao;
 
     /**
@@ -75,5 +73,10 @@ public class CaseInfoServiceImpl implements CaseInfoService {
     @Override
     public boolean deleteById(Long id) {
         return this.caseInfoDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public void updateOrInsert(List<CaseInfo> caseInfoList) {
+        caseInfoDao.updateOrInsert(caseInfoList);
     }
 }
