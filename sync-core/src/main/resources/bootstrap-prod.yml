@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    kubernetes:
+      config:
+        enabled: true
+        name: project-${PROJECT_NAME}
+      client:
+        master-url: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
+        namespace: kedacom-project-namespace
+        ca-cert-file:  /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+        token: /var/run/secrets/kubernetes.io/serviceaccount/token
+      reload:
+        enabled: true
