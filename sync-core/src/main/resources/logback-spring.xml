@@ -1,46 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
     <contextName>logback</contextName>
-    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="app"/>
-    <property name="LOG_PATH" value="/opt/logs/${APP_NAME}"/>
+    <springProperty scope="context" name="APP_NAME" source="o2o.system.module-name" defaultValue="app"/>
+    <property name="LOG_PATH" value="/choice/logs/${APP_NAME}"/>
     <property name="LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } [%t] [%-40.40logger{39}:%line] %m%n"/>
-    <property name="CONSOLE_LOG_PATTERN"
-              value="${CONSOLE_LOG_PATTERN:-%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr([%t]){faint} %clr([%-40.40logger{39}:%line]){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}}"/>
-
-    <!-- 彩色日志依赖的渲染类 -->
-    <conversionRule conversionWord="clr" converterClass="org.springframework.boot.logging.logback.ColorConverter"/>
-    <conversionRule conversionWord="wex"
-                    converterClass="org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter"/>
-    <conversionRule conversionWord="wEx"
-                    converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} ${LOG_LEVEL_PATTERN:-%5p} ${PID:- } [%t] [%-40.40logger{39}] %m%n"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
-            <charset>UTF-8</charset>
+        <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
+            <customFields>{"service_name":"${APP_NAME}"}</customFields>
         </encoder>
     </appender>
-
-    <!--FILE DEBUG-->
-    <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>${LOG_PATTERN}</pattern>
-            <charset>UTF-8</charset>
-        </encoder>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>DEBUG</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
-        </filter>
-        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_PATH}/debug-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
-            <MaxHistory>15</MaxHistory>
-            <maxFileSize>50MB</maxFileSize>
-        </rollingPolicy>
-    </appender>
-
-    <!--FILE INFO-->
+    <!--FILE-->
     <appender name="FILE-INFO" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${LOG_PATTERN}</pattern>
@@ -52,13 +23,29 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_PATH}/info-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-info.%i.log</FileNamePattern>
             <MaxHistory>15</MaxHistory>
             <maxFileSize>50MB</maxFileSize>
         </rollingPolicy>
     </appender>
 
-    <!--FILE WARN-->
+    <appender name="FILE-DEBUG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-debug.%i.log</FileNamePattern>
+            <MaxHistory>15</MaxHistory>
+            <maxFileSize>50MB</maxFileSize>
+        </rollingPolicy>
+    </appender>
+
     <appender name="FILE-WARN" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${LOG_PATTERN}</pattern>
@@ -70,12 +57,11 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_PATH}/warn-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-warn.%i.log</FileNamePattern>
             <MaxHistory>15</MaxHistory>
             <maxFileSize>50MB</maxFileSize>
         </rollingPolicy>
     </appender>
-
     <!--FILE ERROR-->
     <appender name="FILE-ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -88,15 +74,16 @@
             <onMismatch>DENY</onMismatch>
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
-            <FileNamePattern>${LOG_PATH}/error-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <FileNamePattern>${LOG_PATH}/%d{yyyy-MM-dd}-error.%i.log</FileNamePattern>
             <MaxHistory>15</MaxHistory>
             <maxFileSize>50MB</maxFileSize>
         </rollingPolicy>
     </appender>
     <logger name="druid.sql.Statement" level="DEBUG"/>
-    <root level="error">
+    <logger name="com.choice" level="INFO"/>
+
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
-        <appender-ref ref="FILE-DEBUG"/>
         <appender-ref ref="FILE-INFO"/>
         <appender-ref ref="FILE-WARN"/>
         <appender-ref ref="FILE-ERROR"/>

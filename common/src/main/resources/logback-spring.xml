@@ -9,7 +9,6 @@
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder charset="UTF-8" class="net.logstash.logback.encoder.LogstashEncoder">
             <customFields>{"service_name":"${APP_NAME}"}</customFields>
-            <jsonFactoryDecorator class="com.choice.o2o.qrdish.commons.log.MyJsonFactoryDecorator"/>
         </encoder>
     </appender>
     <!--FILE-->
@@ -83,29 +82,10 @@
     <logger name="druid.sql.Statement" level="DEBUG"/>
     <logger name="com.choice" level="INFO"/>
 
-    <appender name="ASYNC-INFO" class="com.choice.extension.commons.log.AsyncAppender">
-        <appender-ref ref="FILE-INFO"/>
-    </appender>
-    <appender name="ASYNC-ERROR" class="com.choice.extension.commons.log.AsyncAppender">
-        <!-- 不丢失日志.默认的,如果队列的80%已满,则会丢弃TRACT、DEBUG、INFO级别的日志 -->
-        <discardingThreshold>0</discardingThreshold>
-        <appender-ref ref="FILE-ERROR"/>
-    </appender>
-    <appender name="ASYNC-WARN" class="com.choice.extension.commons.log.AsyncAppender">
-        <discardingThreshold>0</discardingThreshold>
-        <appender-ref ref="FILE-WARN"/>
-    </appender>
-    <appender name="ASYNC-DEBUG" class="com.choice.extension.commons.log.AsyncAppender">
-        <appender-ref ref="FILE-DEBUG"/>
-    </appender>
-    <appender name="ASYNC-STDOUT" class="com.choice.extension.commons.log.AsyncAppender">
+    <root level="INFO">
         <appender-ref ref="STDOUT"/>
-    </appender>
-    <root level="ERROR">
-        <appender-ref ref="ASYNC-STDOUT"/>
-        <appender-ref ref="ASYNC-INFO"/>
-        <appender-ref ref="ASYNC-ERROR"/>
-        <appender-ref ref="ASYNC-WARN"/>
-        <appender-ref ref="ASYNC-DEBUG"/>
+        <appender-ref ref="FILE-INFO"/>
+        <appender-ref ref="FILE-WARN"/>
+        <appender-ref ref="FILE-ERROR"/>
     </root>
 </configuration>

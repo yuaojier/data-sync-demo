@@ -6,6 +6,8 @@ import com.kedacom.synccore.event.CaseEvent;
 import com.kedacom.synccore.service.CaseService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import request.CaseInformationRequest;
@@ -20,6 +22,7 @@ import static constants.RequestPathConstants.*;
 @RestController
 @RequestMapping(SYNC)
 @Api(tags = "数据同步")
+@Slf4j
 public class SyncController {
     @Autowired
     private CaseInfoDao caseInfoDao;

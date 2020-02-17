@@ -15,6 +15,7 @@
 
     <properties>
         <java.version>1.8</java.version>
+        <spring.application.name>extractor</spring.application.name>
     </properties>
 
     <dependencies>
@@ -79,6 +80,11 @@
             <artifactId>springfox-swagger2</artifactId>
         </dependency>
         <dependency>
+            <groupId>net.logstash.logback</groupId>
+            <artifactId>logstash-logback-encoder</artifactId>
+            <version>4.11</version>
+        </dependency>
+        <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
             <version>1.2.49</version>
@@ -115,17 +121,5 @@
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>dev</id>
-            <properties>
-                <env>dev</env>
-            </properties>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-        </profile>
-    </profiles>
 
 </project>
